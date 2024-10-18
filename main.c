@@ -118,23 +118,12 @@ int main(){
 
         bool isSamle = true;    
         bool isValid = true;    
-        if(!isSample(birthDay)){
+        if(!(isSample(birthDay) && isValidDate(birthDay))){
             clear();
             printw("Неверный формат ввод данных :(\nВведите вашу дату рождения снова: ");
             strcpy(birthDay, "");
             isSamle = false;
-        }
-
-        if(isSamle && !isValidDate(birthDay)){
-            clear();
-            printw("Неверный формат ввод данных :(\nВведите вашу дату рождения снова: ");
-            strcpy(birthDay, "");
-            isValid = false;
-        }
-        
-        if(isSamle && isValid){
-            haveBirthDay = true;
-        }
+        }else{haveBirthDay = true;}
     }
 
     // Суммируем все цифрв полученной даты
