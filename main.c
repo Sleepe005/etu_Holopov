@@ -4,6 +4,7 @@
 #include <string.h>
 #include <ncurses.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 // Функция проверки валидности вводимых даннх
 bool isSample(char strData[12]){
@@ -20,13 +21,38 @@ bool isSample(char strData[12]){
     return allDigIsDig && hasSep;
 }
 
+// Функция распарсирования строки
+void Split(char data[12], int *value){
+    char element[5] = "";
+    int pos = 0;
+    int j = 0;
+    for(int i = 0; i < strlen(data); ++i){
+        if(ispunct(data[i])){
+            value[j] = atoi(element);
+            j++;
+            strcpy(element, "");
+            pos = 0;
+        }else{
+            element[pos] = data[i];
+            pos++;
+        }
+    }
+    value[j] = atoi(element);
+}
+
+
 int main(){
     // Установка языка, инициализация окна и цветов
     setlocale(LC_ALL, "");
     initscr();
     start_color();
-    init_pair(1, COLOR_BLACK, COLOR_RED);
+    init_pair(1, COLOR_GREEN, COLOR_RED);
+    init_pair(2, COLOR_GREEN, COLOR_MAGENTA);
+    bkgd(COLOR_PAIR(2));
     attrset(COLOR_PAIR(1));
+
+
+    clear();
 
     printw("Введите вашу дату рождения (ДД:ММ:ГГГГ): ");
 
@@ -58,4 +84,6 @@ int main(){
     clear();
     printw("Номер вашего старшего аркана - %d\n", numbersSum);
     getch();
+
+    return 0;
 }
