@@ -114,7 +114,7 @@ int main(){
 
     // считываем дату рождения, пока не получим валидные данные
     while(!haveBirthDay){
-        scanw("%s\n", &birthDay);
+        scanw("%s\n", birthDay);
 
         bool isSamle = true;    
         bool isValid = true;    
@@ -139,7 +139,21 @@ int main(){
 
     clear();
     printw("Номер вашего старшего аркана - %d\n", numbersSum);
+
+    char line[500];
+    std::ifstream arkan_text("info.txt");
+
+    for(int i = 0; i < numbersSum - 1; i++){
+        arkan_text.getline(line, 500);
+        // strcpy(line, "");
+    }
+    arkan_text.getline(line, 500);
+    arkan_text.close();
+
+    printw("Описание вашего аркана: %s\n", line);
+
     getch();
 
+    endwin();
     return 0;
 }
