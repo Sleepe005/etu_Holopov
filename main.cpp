@@ -126,6 +126,10 @@ int main(){
         }else{haveBirthDay = true;}
     }
 
+    std::ofstream datesLog("log.txt", std::ios_base::out || std::ios_base::ate);
+    datesLog << birthDay << '\n';
+    datesLog.close();
+
     // Суммируем все цифры полученной даты
     int numbersSum = 0;
     for(int i = 0; i != strlen(birthDay); ++i){
