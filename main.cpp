@@ -5,6 +5,7 @@
 #include <ncurses.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <fstream>
 
 // Функция проверки валидности вводимых даннх
 bool isSample(char strData[11]){
@@ -54,7 +55,7 @@ bool visokosYear(int year){
     return res;
 }
 
-// Функция подсчёёта количества дней в месяце
+// Функция подсчёта количества дней в месяце
 int valDayInMonth(int year, int month){
     bool vis = visokosYear(year);
 
@@ -95,14 +96,13 @@ bool isValidDate(char strDate[11]){
     return goodDate;
 }
 
-
 int main(){
     // Установка языка, инициализация окна и цветов
     setlocale(LC_ALL, "");
     initscr();
     start_color();
-    init_pair(1, COLOR_GREEN, COLOR_RED);
-    init_pair(2, COLOR_GREEN, COLOR_MAGENTA);
+    init_pair(1, COLOR_BLACK, COLOR_RED);
+    init_pair(2, COLOR_BLACK, COLOR_MAGENTA);
     bkgd(COLOR_PAIR(2));
     attrset(COLOR_PAIR(1));
     clear();
@@ -126,7 +126,7 @@ int main(){
         }else{haveBirthDay = true;}
     }
 
-    // Суммируем все цифрв полученной даты
+    // Суммируем все цифры полученной даты
     int numbersSum = 0;
     for(int i = 0; i != strlen(birthDay); ++i){
         if(isdigit(birthDay[i])){
