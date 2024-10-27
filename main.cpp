@@ -6,6 +6,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <fstream>
+#include <chrono>
 
 // Функция проверки валидности вводимых даннх
 bool isSample(char strData[11]){
@@ -124,7 +125,7 @@ void doSomething(int doing, char* birthDay, bool* isBirthDay){
     {
         clear();
         *isBirthDay = false;
-        
+
         printw("Введите вашу дату рождения (ДД:ММ:ГГГГ): ");
 
         // считываем дату рождения, пока не получим валидные данные
@@ -165,6 +166,9 @@ void doSomething(int doing, char* birthDay, bool* isBirthDay){
             getch();
             break;
         }
+
+        auto begin = std::chrono::steady_clock::now();
+
         // Суммируем все цифры полученной даты
         int numbersSum = 0;
         for(int i = 0; i != strlen(birthDay); ++i){
@@ -188,6 +192,12 @@ void doSomething(int doing, char* birthDay, bool* isBirthDay){
         arkan_text.close();
 
         printw("Описание вашего аркана: %s\n", line);
+
+        auto end = std::chrono::steady_clock::now();
+        auto elapsed_ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
+
+        printw("Время работы алгоритма составило: %lld ns\n", elapsed_ms.count());
+
         printw("\nДля выхода в главное меню нажмите любую кнопку\n");
         getch();
 
@@ -200,17 +210,11 @@ void doSomething(int doing, char* birthDay, bool* isBirthDay){
         
         char line[500];
         std::ifstream log_text("log.txt");
-        bool isLines = false;
 
         while (!log_text.eof())
         { 
-            isLines = true;
             log_text.getline(line, 500);
             printw("%s\n", line);
-        }
-
-        if(!isLines){
-            printw("Лог пустой :(\n");
         }
 
         printw("\nДля выхода в меню нажмите любую кнопку");
