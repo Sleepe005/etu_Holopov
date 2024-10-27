@@ -96,6 +96,27 @@ bool isValidDate(char strDate[11]){
     return goodDate;
 }
 
+void printMenu(int cursePosition, bool isBirthDay, char birthDay[11]){
+    char menu[4][75] = {
+        "1. Ввести дату",
+        "2. Узнать аркан",
+        "3. Вывести лог",
+        "4. Выход (esc x2)"
+    };
+
+    for(int i = 1; i <= 4; i++){
+        printw("%s", menu[i]);
+        
+        if(isBirthDay && i == 1){
+            printw("    %s", birthDay);
+        }
+        if(i == cursePosition){
+            printw("   <--");
+        }
+        printw("\n");
+    }
+}
+
 int main(){
     // Установка языка, инициализация окна и цветов
     setlocale(LC_ALL, "");
