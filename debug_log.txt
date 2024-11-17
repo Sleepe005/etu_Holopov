@@ -1,3 +1,0 @@
-Start time: 468782860019958 ns
-End time: 468782860173083 ns
-Elapsed time: 0 ms
