@@ -53,6 +53,9 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                "workWithData.cpp",
+                "workWithDate.cpp",
+                "menu.cpp",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "-lncurses"
