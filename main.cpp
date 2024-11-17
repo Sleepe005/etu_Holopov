@@ -1,12 +1,5 @@
-#include <stdio.h>
-#include <stdbool.h>
 #include <locale.h>
-#include <string.h>
 #include <ncurses.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <fstream>
-#include <chrono>
 #include "workWithData.h"
 #include "workWithDate.h"
 #include "menu.h"
