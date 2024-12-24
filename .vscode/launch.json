@@ -1,24 +1,6 @@
 {
     "version": "0.2.0",
     "configurations": [
-        // {
-        //     "name": "C/C++: clang build and debug active file",
-        //     "type": "cppdbg",
-        //     "request": "launch",
-        //     "program": "${fileDirname}/${fileBasenameNoExtension}",
-        //     "args": [],
-        //     "stopAtEntry": false,
-        //     "cwd": "${fileDirname}",
-        //     "environment": [
-        //         {
-        //             "name": "TERM",
-        //             "value": "xterm-256color"
-        //         }
-        //     ],
-        //     "externalConsole": true,
-        //     "MIMode": "lldb",
-        //     "preLaunchTask": "C/C++: clang build active file"
-        // },
         {
             "name": "C/C++: g++ build and debug active file",
             "type": "cppdbg",

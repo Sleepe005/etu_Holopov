@@ -3,6 +3,7 @@
 #include "workWithData.h"
 #include "workWithDate.h"
 #include "menu.h"
+#include "catch.hpp"
 
 int main(){
     // Установка языка, инициализация окна и цветов
