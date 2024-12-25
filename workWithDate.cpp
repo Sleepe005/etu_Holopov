@@ -19,7 +19,7 @@ int valDayInMonth(int year, int month){
     bool vis = visokosYear(year);
 
     int res;
-    month%=12;
+    // month%=12;
 
     if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
     {

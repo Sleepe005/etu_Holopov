@@ -25,6 +25,27 @@ void printMenu(int cursePosition, bool isBirthDay, char birthDay[11]){
     }
 }
 
+int calculateArcan(char birthDay[]){
+    // Суммируем все цифры полученной даты
+    int numbersSum = 0;
+    for(int i = 0; i != strlen(birthDay); ++i){
+        if(isdigit(birthDay[i])){
+            numbersSum += birthDay[i]-'0';
+        }
+    }
+
+    // Высчитываем старший аркан
+    if(numbersSum > 22){numbersSum -= 22*(numbersSum/22);}
+    
+    return numbersSum;
+}
+
+void writeLogInFile(char str[], char fileName[] = "log.txt"){
+    std::ofstream datesLog(fileName, std::ios_base::out || std::ios_base::ate);
+    datesLog << str << '\n';
+    datesLog.close();
+}
+
 void doSomething(int doing, char* birthDay, bool* isBirthDay){
     switch (doing)
     {
@@ -49,17 +70,8 @@ void doSomething(int doing, char* birthDay, bool* isBirthDay){
             }else{*isBirthDay = true;}
         }
 
-        std::ofstream datesLog("log.txt", std::ios_base::out || std::ios_base::ate);
-        datesLog << birthDay << '\n';
-        datesLog.close();
+        writeLogInFile(birthDay);
 
-        // Суммируем все цифры полученной даты
-        int numbersSum = 0;
-        for(int i = 0; i != strlen(birthDay); ++i){
-            if(isdigit(birthDay[i])){
-                numbersSum += birthDay[i]-'0';
-            }
-        }
         break;
     }
 
@@ -76,23 +88,14 @@ void doSomething(int doing, char* birthDay, bool* isBirthDay){
 
         auto begin = std::chrono::steady_clock::now();
 
-        // Суммируем все цифры полученной даты
-        int numbersSum = 0;
-        for(int i = 0; i != strlen(birthDay); ++i){
-            if(isdigit(birthDay[i])){
-                numbersSum += birthDay[i]-'0';
-            }
-        }
+        int arcanNumber = calculateArcan(birthDay);
 
-        // Высчитываем старший аркан
-        if(numbersSum > 22){numbersSum -= 22*(numbersSum/22);}
-
-        printw("Номер вашего старшего аркана - %d\n", numbersSum);
+        printw("Номер вашего старшего аркана - %d\n", arcanNumber);
 
         char line[500];
         std::ifstream arkan_text("info.txt");
 
-        for(int i = 0; i < numbersSum - 1; i++){
+        for(int i = 0; i < arcanNumber - 1; i++){
             arkan_text.getline(line, 500);
         }
         arkan_text.getline(line, 500);
